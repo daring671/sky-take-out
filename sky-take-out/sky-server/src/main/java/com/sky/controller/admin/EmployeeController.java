@@ -100,6 +100,24 @@ public class EmployeeController {
         return Result.success(pageResult);
     }
 
+    /**
+     * 修改员工状态
+     * @param status
+     * @param id
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation("修改员工账号状态(启用/禁用)")
+    //@PathVariable注解表示从路径中获取参数,@PathVariable("status"),
+    // 表示将路径中的status参数绑定到方法的status参数上,("status")可要可不要
+    public Result startOrStop(@PathVariable("status") Integer status,Long id){
+        log.info("修改员工账号状态：{},{}",status,id);
+
+        employeeService.startOrStop(status,id);
+
+
+        return Result.success();
+    }
 
 
 
